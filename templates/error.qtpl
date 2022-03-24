@@ -1,0 +1,33 @@
+{% import (
+"github.com/valyala/fasthttp"
+
+)%}
+
+{% code
+type ErrorPage struct {
+CTX *fasthttp.RequestCtx
+Message string
+Solution string
+Js string
+Css string
+Host string
+}
+%}
+
+{% func (view *ErrorPage) Body() %}
+<div class="view error-holder">
+<div class="error">
+    <div class="caption">Възникна грешка</div>
+    <div class="content">
+    <div class="message">{%s view.Message %}</div>
+    <div class="solution">{%s view.Solution %}</div>
+    </div>
+</div>
+</div>
+{% endfunc %}
+{% func (view *ErrorPage) Description() %}
+{% endfunc %}
+{% func (view *ErrorPage) Title() %}Възникна грешка{% endfunc %}
+{% func (view *ErrorPage) Stylesheet() %}{%s view.Css %}{% endfunc %}
+{% func (view *ErrorPage) Script() %}{%s view.Js %}{% endfunc %}
+{% func (view *ErrorPage) Domain() %}{%s view.Host %}{% endfunc %}

@@ -1,0 +1,54 @@
+{% import (
+"github.com/valyala/fasthttp"
+
+)%}
+
+{% code
+type TaskPage struct {
+CTX *fasthttp.RequestCtx
+Js string
+Css string
+Host string
+}
+%}
+
+{% func (view *TaskPage) Body() %}
+<div style="margin:50px auto;width:900px;">
+
+    <div style="margin:15px 0;">
+        <div style="display: inline-block;vertical-align: top;width:50px;height:50px;border-radius:8px;border:1px solid #ccc; background-color: #fff;margin-right: 10px">
+
+        </div>
+        <div style="display: inline-block;vertical-align: top">
+            <div style="font-weight: 600;font-size:18px;margin-top: 3px">URL Shortener</div>
+            <div>Задача от Chaos за Николай Иванов</div>
+        </div>
+        <div style="float:right;display:flex;flex-direction: column">
+            <a href="/"><div style="display: flex">
+                <div style="background-color: #3F2D64;border-radius: 6px;width:25px;height:25px;line-height:  25px;   text-align: center;
+ font-weight: bold;font-size:14px;color:#fff;">?
+                </div>
+                <div style="padding:3px 0 0 5px;">Ръководство на потребителя</div>
+
+
+            </div></a>
+            <a href="/tech-doc"><div style="display: flex;margin-top: 5px">
+                <div style="background-color: #3F2D64;border-radius: 6px;width:25px;height:25px;line-height:  23px;   text-align: center;
+ font-weight: bold;font-size:14px;color:#fff;">{&nbsp;}
+                </div>
+                <div style="padding:3px 0 0 5px;">Техническа документация</div>
+
+
+                </div></a>
+        </div>
+    </div>
+    <iframe src="/pdf/task-url-shortener.pdf" height="800" width="900"></iframe>
+
+
+</div>
+{% endfunc %}
+{% func (view *TaskPage) Description() %}{% endfunc %}
+{% func (view *TaskPage) Title() %}{% endfunc %}
+{% func (view *TaskPage) Stylesheet() %}{%s view.Css %}{% endfunc %}
+{% func (view *TaskPage) Script() %}{%s view.Js %}{% endfunc %}
+{% func (view *TaskPage) Domain() %}{%s view.Host %}{% endfunc %}

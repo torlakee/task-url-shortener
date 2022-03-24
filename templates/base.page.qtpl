@@ -1,0 +1,32 @@
+{% interface
+Page {
+Title()
+Description()
+Body()
+Stylesheet()
+Script()
+Domain()
+}
+%}
+{% func PageTemplate(p Page) %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="description" content="{%= p.Description() %}"/>
+    <link rel="stylesheet" type="text/css" href="{%= p.Domain() %}/{%= p.Stylesheet() %}">
+    <title>{%= p.Title() %}</title>
+</head>
+<body>
+{%= p.Body() %}
+<script type="text/javascript" src="{%= p.Domain() %}/scripts/{%= p.Script() %}"></script>
+</body>
+</html>
+{% endfunc %}
+{% code type BasePage struct {} %}
+{% func (p *BasePage) Title() %}{% endfunc %}
+{% func (p *BasePage) Stylesheet() %}{% endfunc %}
+{% func (p *BasePage) Script() %}{% endfunc %}
+{% func (p *BasePage) Domain() %}{% endfunc %}
+{% func (p *BasePage) Description() %}This is a base title{% endfunc %}
+{% func (p *BasePage) Body() %}This is a base body{% endfunc %}
